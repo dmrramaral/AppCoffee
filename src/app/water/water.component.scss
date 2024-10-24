@@ -36,6 +36,29 @@ a {
     }
 }
 
+th{
+    
+    font-size: 0.8em;
+}
+
+tr{
+   
+    font-size: 0.8em;
+ }
+.align-middle {
+    vertical-align: middle !important;
+}
+
+.text-success{
+    background-color: green;
+}
+
+.text-danger{
+    background-color: red;
+}
+
+
+
 
 // Formulário
 form {
@@ -76,6 +99,8 @@ form {
                 outline: none;
             }
         }
+
+        
 
         @media (min-width: 576px) {
             flex: 1 1 100%; // Ajuste para 48% de largura em telas maiores que 576px

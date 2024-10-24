@@ -20,10 +20,10 @@
                             <label for="calcio">Calcio</label>
                             <input type="number" formControlName="calcio" class="form-control" id="calcio">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="sulfato">Sulfato</label>
                             <input type="number" formControlName="sulfato" class="form-control" id="sulfato">
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="magnesio">Magnesio</label>
                             <input type="number" formControlName="magnesio" class="form-control" id="magnesio">
@@ -44,24 +44,24 @@
                 </form>
             </div>
             <div class="col-md-6">
-                <small>Dados de referencia da tabela SCA</small>
-                <table class="table">
+                <small>Dados de referência da tabela SCA</small>
+                <table class="table text-center">
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Dureza<br><small>(Id: 68mg/l, Ac: 17-85mg/l)</small></th>
-                            <th>Alcalinidade<br><small>(Id: 40mg/l, Ac: ~40mg/l)</small></th>
-                            <th>Sodio<br><small>(Id: 10mg/l, Ac: ~10mg/l)</small></th>
-                            <th>PH<br><small>(Id: 7, Ac: 6.5-7.5)</small></th>
+                            <th class="align-middle">Nome</th>
+                            <th class="align-middle">Dureza<br><small>(Id: 68mg/l, Ac: 17-85mg/l)</small></th>
+                            <th class="align-middle">Alcalinidade<br><small>(Id: 40mg/l, Ac: ~40mg/l)</small></th>
+                            <th class="align-middle">Sódio<br><small>(Id: 10mg/l, Ac: ~10mg/l)</small></th>
+                            <th class="align-middle">PH<br><small>(Id: 7, Ac: 6.5-7.5)</small></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let agua of listWater.waterList">
-                            <td>{{ agua.nome }}</td>
-                            <td>{{ agua.dureza | number:'1.2-2' }}</td>
-                            <td>{{ agua.alcalinidade| number:'1.2-2' }}</td>
-                            <td>{{ agua.sodio| number:'1.2-2' }}</td>
-                            <td>{{agua.ph | number:'1.2-2'}}</td>
+                            <td class="align-middle">{{ agua.nome }}</td>
+                            <td class="align-middle" [ngClass]="{'text-success': agua.dureza >= 17 && agua.dureza <= 85, 'text-danger': agua.dureza < 17 || agua.dureza > 85}">{{ agua.dureza | number:'1.2-2' }}</td>
+                            <td class="align-middle" [ngClass]="{'text-success': agua.alcalinidade == 40, 'text-danger': agua.alcalinidade != 40}">{{ agua.alcalinidade | number:'1.2-2' }}</td>
+                            <td class="align-middle" [ngClass]="{'text-success': agua.sodio == 10, 'text-danger': agua.sodio != 10}">{{ agua.sodio | number:'1.2-2' }}</td>
+                            <td class="align-middle" [ngClass]="{'text-success': agua.ph >= 6.5 && agua.ph <= 7.5, 'text-danger': agua.ph < 6.5 || agua.ph > 7.5}">{{ agua.ph | number:'1.2-2' }}</td>
                         </tr>
                     </tbody>
                 </table>
