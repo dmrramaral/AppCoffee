@@ -1,11 +1,11 @@
 <!-- Crie um ambiente para calcular a alcalinidade e a dureza e o sodium de um agua inserindo em uma lista abaixo -->
 
 
-<div class="container">
+<div class="container justify-content-evenly" >
     <div>
         <h1>Água</h1>
         <form [formGroup]="formWater">
-        <div class="d-flex flex-wrap">
+        <div class="d-flex flex-wrap justify-content-evenly">
                 <div class="form-group m-1 col-5">
                     <label for="nome">Nome</label>
                     <input type="text" formControlName="nome" class="form-control" id="nome">
@@ -49,8 +49,8 @@
                     <tr>
                         <th class="align-middle">Nome</th>
                         <th class="align-middle">Dureza<br><small>(Id: 68mg/l, Ac: 17-85mg/l)</small></th>
-                        <th class="align-middle">Alcalinidade<br><small>(Id: 40mg/l, Ac: ~40mg/l)</small></th>
-                        <th class="align-middle">Sódio<br><small>(Id: 10mg/l, Ac: ~10mg/l)</small></th>
+                        <th class="align-middle">Alcalinidade<br><small>(Id: 40mg/l, Ac: 3-50mg/l)</small></th>
+                        <th class="align-middle">Sódio<br><small>(Id: 10mg/l, Ac: 5-15mg/l)</small></th>
                         <th class="align-middle">PH<br><small>(Id: 7, Ac: 6.5-7.5)</small></th>
                     </tr>
                 </thead>
@@ -61,10 +61,10 @@
                             [ngClass]="{'text-success': agua.dureza >= 17 && agua.dureza <= 85, 'text-danger': agua.dureza < 17 || agua.dureza > 85}">
                             {{ agua.dureza | number:'1.2-2' }}</td>
                         <td class="align-middle"
-                            [ngClass]="{'text-success': agua.alcalinidade >= 30 && agua.alcalinidade <= 50, 'text-danger': agua.alcalinidade < 30 && agua.alcalinidade > 50}">
+                            [ngClass]="{'text-success': agua.alcalinidade >= 30 && agua.alcalinidade <= 50, 'text-danger': agua.alcalinidade < 30 || agua.alcalinidade > 50}">
                             {{ agua.alcalinidade | number:'1.2-2' }}</td>
                         <td class="align-middle"
-                            [ngClass]="{'text-success': agua.sodio >= 5 && agua.sodio <= 15, 'text-danger': agua.sodio < 5 && agua.sodio > 15}">{{
+                            [ngClass]="{'text-success': agua.sodio >= 5 && agua.sodio <= 15, 'text-danger': agua.sodio > 15 || agua.sodio < 5}">{{
                             agua.sodio | number:'1.2-2' }}</td>
                         <td class="align-middle"
                             [ngClass]="{'text-success': agua.ph >= 6.5 && agua.ph <= 7.5, 'text-danger': agua.ph < 6.5 || agua.ph > 7.5}">
