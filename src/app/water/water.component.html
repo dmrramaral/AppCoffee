@@ -16,7 +16,7 @@
                     <input type="number" formControlName="bicarbonato" class="form-control" id="bicarbonato">
                 </div>
                 <div class="form-group m-1  col-5">
-                    <label for="calcio">Calcio</label>
+                    <label for="calcio">Cálcio</label>
                     <input type="number" formControlName="calcio" class="form-control" id="calcio">
                 </div>
                 <!-- <div class="form-group m-1 ">
@@ -28,7 +28,7 @@
                     <input type="number" formControlName="magnesio" class="form-control" id="magnesio">
                 </div>
                 <div class="form-group m-1  col-5">
-                    <label for="sodio">Sodio</label>
+                    <label for="sodio">Sódio</label>
                     <input type="number" formControlName="sodio" class="form-control" id="sodio">
                 </div>
                 <div class="form-group m-1  col-5">
@@ -61,10 +61,10 @@
                             [ngClass]="{'text-success': agua.dureza >= 17 && agua.dureza <= 85, 'text-danger': agua.dureza < 17 || agua.dureza > 85}">
                             {{ agua.dureza | number:'1.2-2' }}</td>
                         <td class="align-middle"
-                            [ngClass]="{'text-success': agua.alcalinidade == 40, 'text-danger': agua.alcalinidade != 40}">
+                            [ngClass]="{'text-success': agua.alcalinidade >= 30 && agua.alcalinidade <= 50, 'text-danger': agua.alcalinidade < 30 && agua.alcalinidade > 50}">
                             {{ agua.alcalinidade | number:'1.2-2' }}</td>
                         <td class="align-middle"
-                            [ngClass]="{'text-success': agua.sodio == 10, 'text-danger': agua.sodio != 10}">{{
+                            [ngClass]="{'text-success': agua.sodio >= 5 && agua.sodio <= 15, 'text-danger': agua.sodio < 5 && agua.sodio > 15}">{{
                             agua.sodio | number:'1.2-2' }}</td>
                         <td class="align-middle"
                             [ngClass]="{'text-success': agua.ph >= 6.5 && agua.ph <= 7.5, 'text-danger': agua.ph < 6.5 || agua.ph > 7.5}">

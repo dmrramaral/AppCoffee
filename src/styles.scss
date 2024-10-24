@@ -10,13 +10,9 @@ $text-color: #3e2723; // Texto escuro
 body {
     background-color: $background-color;
     color: $text-color;
-    font-family: 'Courier New', Courier, monospace;
 }
 
-h1 {
-    color: $primary-color;
-    font-family: 'Courier New', Courier, monospace;
-}
+
 
 a {
     color: $primary-color;
