@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+// Definindo variáveis de cores com paletas de café
+$primary-color: #6f4e37; // Café marrom
+$secondary-color: #d7ccc8; // Café com leite
+$accent-color: #a1887f; // Café claro
+$background-color: #b38b6f; // Fundo claro
+$text-color: #3e2723; // Texto escuro
+
+// Estilos globais
+body {
+    background-color: $background-color;
+    color: $text-color;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    color: $primary-color;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+    color: $primary-color;
+    &:hover {
+        color: $accent-color;
+    }
+}

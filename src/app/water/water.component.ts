@@ -16,57 +16,56 @@ import { ListWater } from '../../model/listWater';
   styleUrls: ['./water.component.scss']
 })
 export class WaterComponent implements OnInit {
-  water!: Water;
 
+  water!: Water;
   listWater: ListWater = { waterList: [] };
   formWater!: FormGroup;  
 
   constructor(
-    private formBuilder: FormBuilder  
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.initializeForm();
+  }
+
+  initializeForm() {
     this.formWater = this.formBuilder.group({
-      nome: [null],
-      bicarbonato: [null],
-      calcio: [null],
-      magnesio: [null],
-      sodio: [null],
-      sulfato: [null],
-      cloreto: [null],
-      alcalinidade: [null],
-      dureza: [null],
-      ph: [null]
+      nome: [''],
+      bicarbonato: [''],
+      calcio: [''],
+      magnesio: [''],
+      sodio: [''],
+      sulfato: [''],
+      cloreto: [''],
+      alcalinidade: [''],
+      dureza: [''],
+      ph: ['']
     }); 
   }
 
   calcular() {
-    console.log(this.formWater.value);
-    const bicarbonato = this.formWater.get('bicarbonato')?.value || 0;
-
-    const calcio = this.formWater.get('calcio')?.value || 0;
-    const magnesio = this.formWater.get('magnesio')?.value || 0;
-    const sodio = this.formWater.get('sodio')?.value || 0;
-    const sulfato = this.formWater.get('sulfato')?.value || 0;
-    const cloreto = this.formWater.get('cloreto')?.value || 0;
-    const nome = this.formWater.get('nome')?.value || 0;
-    const ph = this.formWater.get('ph')?.value || 0;
-  
-    const alcalinidade = bicarbonato * 0.8;
-    const dureza = (calcio * 2.5) + (magnesio * 4.2);
-  
-    this.formWater.patchValue({
-      alcalinidade: alcalinidade,
-      dureza: dureza,
-      sodio: sodio,
-      sulfato: sulfato,
-      cloreto: cloreto,
-      nome: nome,
-      ph: ph
-
-    });
-  
+    const formValues = this.formWater.value;
+    console.log(formValues);
+    const updatedValues = this.calculateWaterProperties(formValues);
+    this.formWater.patchValue(updatedValues);
     this.save();
+  }
+
+  calculateWaterProperties(values: any) {
+    // Implement the calculation logic here
+    // Example:
+    return {
+      bicarbonato: values.bicarbonato,
+      calcio: values.calcio,
+      magnesio: values.magnesio,
+      sodio: values.sodio,
+      sulfato: values.sulfato,
+      cloreto: values.cloreto,
+      alcalinidade: values.bicarbonato*0.8,
+      dureza: (values.calcio*2.5)+(values.magnesio*4.2),
+      ph: values.ph
+    };
   }
 
   save() {
