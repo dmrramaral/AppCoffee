@@ -1,0 +1,71 @@
+<!-- Crie um ambiente para calcular a alcalinidade e a dureza e o sodium de um agua inserindo em uma lista abaixo -->
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Água</h1>
+                <form [formGroup]="formWater">
+                    <div class="campos">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" formControlName="nome" class="form-control" id="nome">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bicarbonato">Bicarbonato</label>
+                            <input type="number" formControlName="bicarbonato" class="form-control" id="bicarbonato">
+                        </div>
+                        <div class="form-group">
+                            <label for="calcio">Calcio</label>
+                            <input type="number" formControlName="calcio" class="form-control" id="calcio">
+                        </div>
+                        <div class="form-group">
+                            <label for="sulfato">Sulfato</label>
+                            <input type="number" formControlName="sulfato" class="form-control" id="sulfato">
+                        </div>
+                        <div class="form-group">
+                            <label for="magnesio">Magnesio</label>
+                            <input type="number" formControlName="magnesio" class="form-control" id="magnesio">
+                        </div>
+                        <div class="form-group">
+                            <label for="sodio">Sodio</label>
+                            <input type="number" formControlName="sodio" class="form-control" id="sodio">
+                        </div>
+                        <div class="form-group">
+                            <label for="ph">PH</label>
+                            <input type="number" formControlName="ph" class="form-control" id="ph">
+                        </div>
+
+                    </div>
+                    <div class="form-group form-inline">
+                        <button type="button" class="btn btn-primary btn-m" (click)="calcular()">Calcular</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <table class="table">
+                    <small>Dados de referencia da tabela SCA</small>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Dureza<br><small>(Id: 68mg/l, Ac: 17-85mg/l)</small></th>
+                            <th>Alcalinidade<br><small>(Id: 40mg/l, Ac: ~40mg/l)</small></th>
+                            <th>Sodio<br><small>(Id: 10mg/l, Ac: ~10mg/l)</small></th>
+                            <th>PH<br><small>(Id: 7, Ac: 6.5-7.5)</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let agua of listWater.waterList">
+                            <td>{{ agua.nome }}</td>
+                            <td>{{ agua.dureza | number:'1.2-2' }}</td>
+                            <td>{{ agua.alcalinidade| number:'1.2-2' }}</td>
+                            <td>{{ agua.sodio| number:'1.2-2' }}</td>
+                            <td>{{agua.ph | number:'1.2-2'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
