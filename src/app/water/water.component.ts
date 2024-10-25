@@ -19,6 +19,7 @@ import { Params } from '../../model/params';
 export class WaterComponent implements OnInit {
 
 
+
   water!: Water;
   params: Params = { 
     alcalinityMin: 30,
@@ -117,10 +118,10 @@ export class WaterComponent implements OnInit {
     }
 
     if (values.calcio >= 16) {
-      caracteristicas.push("mais doce");
+      caracteristicas.push("mais doce.");
     }
     if (values.calcio < 16) {
-      caracteristicas.push("menos doce");
+      caracteristicas.push("menos doce.");
     }
 
    
@@ -140,4 +141,9 @@ export class WaterComponent implements OnInit {
 
 
   }
+
+  deleteWater(agua: Water) {
+    this.listWater.waterList = this.listWater.waterList.filter(water => water !== agua);
+
+    }
 }

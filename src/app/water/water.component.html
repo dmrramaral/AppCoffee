@@ -62,7 +62,8 @@
                         <th class="align-middle">Alcalinidade<br><small>(Id: 40mg/l, Ac: 30-50mg/l)</small></th>
                         <th class="align-middle">Sódio<br><small>(Id: 10mg/l, Ac: 5-15mg/l)</small></th>
                         <th class="align-middle">PH<br><small>(Id: 7, Ac: 6.5-7.5)</small></th>
-                    </tr>
+                        <th class="align-middle">Obs</th>
+                        <th class="align-middle">Ações</th>
                 </thead>
                 <tbody>
                     <tr *ngFor="let agua of listWater.waterList">
@@ -79,16 +80,32 @@
                         <td class="align-middle"
                             [ngClass]="{'text-success': agua.ph >= params.phMin && agua.ph <= params.phMax, 'text-danger': !(agua.ph >= params.phMin && agua.ph <= params.phMax)}">
                             {{ agua.ph | number:'1.2-2' }}</td>
+
+
+                        <td class="align-middle">
+                            <small style="font-weight: 300;">{{ agua.caracteristica }}</small>
+                        </td>
+                        <td class="align-middle">
+                            <button type="button" class="btn btn-danger btn-sm"
+                                (click)="deleteWater(agua)"  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .60rem;">
+                            Excluir</button>
+                        </td>
+
+
+
+
                     </tr>
-                    <tr *ngFor="let agua of listWater.waterList">
-                        <td colspan="5" class="align-middle">{{ agua.caracteristica }}</td>
-                    </tr>
+
                     <tr *ngIf="listWater.waterList.length === 0">
-                        <td colspan="6">Nenhum registro encontrado</td>
+                        <td colspan="7">Nenhum registro encontrado</td>
                     </tr>
 
                 </tbody>
             </table>
+
+
+
+
         </div>
     </div>
 </div>
