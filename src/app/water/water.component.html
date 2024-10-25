@@ -58,14 +58,14 @@
                 <thead>
                     <tr>
                         <th class="align-middle">Nome</th>
-                        <th class="align-middle">Dureza<br><small>(Id: 68mg/l, Ac: 17-85mg/l)</small></th>
-                        <th class="align-middle">Alcalinidade<br><small>(Id: 40mg/l, Ac: 30-50mg/l)</small></th>
-                        <th class="align-middle">Sódio<br><small>(Id: 10mg/l, Ac: 5-15mg/l)</small></th>
-                        <th class="align-middle">PH<br><small>(Id: 7, Ac: 6.5-7.5)</small></th>
+                        <th class="align-middle">Dureza<!-- <br><small>(Id: 68mg/l, Ac: 17-85mg/l)</small> --></th>
+                        <th class="align-middle">Alcal<!-- <br><small>(Id: 40mg/l, Ac: 30-50mg/l)</small> --></th>
+                        <th class="align-middle">Sódio<!-- <br><small>(Id: 10mg/l, Ac: 5-15mg/l)</small> --></th>
+                        <th class="align-middle">PH<!-- <br><small>(Id: 7, Ac: 6.5-7.5)</small> --></th>
                         <th class="align-middle">Obs</th>
-                        <th class="align-middle">Ações</th>
+                     <!--    <th class="align-middle">Ações</th> -->
                 </thead>
-                <tbody>
+                <tbody style="font-size: small;">
                     <tr *ngFor="let agua of listWater.waterList">
                         <td class="align-middle">{{ agua.nome }}</td>
                         <td class="align-middle"
@@ -85,14 +85,11 @@
                         <td class="align-middle">
                             <small style="font-weight: 300;">{{ agua.caracteristica }}</small>
                         </td>
-                        <td class="align-middle">
+                     <!--    <td class="align-middle">
                             <button type="button" class="btn btn-danger btn-sm"
                                 (click)="deleteWater(agua)"  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .60rem;">
                             Excluir</button>
-                        </td>
-
-
-
+                        </td> -->
 
                     </tr>
 
