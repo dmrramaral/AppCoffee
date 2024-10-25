@@ -69,35 +69,67 @@ export class WaterComponent implements OnInit {
       cloreto: [''],
       alcalinidade: [''],
       dureza: [''],
-      ph: ['']
+      ph: [''],
+      caracteristica: ['']
     }); 
   }
 
   calcular() {
-    const formValues = this.formWater.value;
-    console.log(formValues);
-    const updatedValues = this.calculateWaterProperties(formValues);
-    this.formWater.patchValue(updatedValues);
+    this.formWater.patchValue(this.calculateWaterProperties(this.formWater.value));
     this.save();
   }
 
   calculateWaterProperties(values: any) {
-    // Implement the calculation logic here
-    // Example:
-    return {
+   
+    const calculatedValues = {
       bicarbonato: values.bicarbonato,
       calcio: values.calcio,
       magnesio: values.magnesio,
       sodio: values.sodio,
       sulfato: values.sulfato,
       cloreto: values.cloreto,
-      alcalinidade: values.bicarbonato*0.8,
-      dureza: (values.calcio*2.5)+(values.magnesio*4.2),
-      ph: values.ph
+      alcalinidade: values.bicarbonato * 0.8,
+      dureza: values.calcio * 2.5 + values.magnesio * 4.2,
+      ph: values.ph,
+      caracteristica: this.gerarCaracteristicas(values)
     };
+
+    this.formWater.patchValue({ caracteristica: calculatedValues.caracteristica });
+
+    return calculatedValues;
+  }
+
+  gerarCaracteristicas(values: any) {
+    let caracteristicas = [];
+
+    if (values.bicarbonato >= 50) {
+      caracteristicas.push("Água mais ácida");
+    }
+    if (values.bicarbonato < 50) {
+      caracteristicas.push("Água menos ácida");
+    }
+
+    if (values.magnesio <= 3) {
+      caracteristicas.push("menos frutado");
+    }
+    if (values.magnesio > 3) {
+      caracteristicas.push("mais frutado");
+    }
+
+    if (values.calcio >= 16) {
+      caracteristicas.push("mais doce");
+    }
+    if (values.calcio < 16) {
+      caracteristicas.push("menos doce");
+    }
+
+   
+
+    return caracteristicas.join(", ");
   }
 
   save() {
+    console.log(this.formWater.value);
     this.listWater.waterList.push(this.formWater.value);
     this.formWater.reset();
   }

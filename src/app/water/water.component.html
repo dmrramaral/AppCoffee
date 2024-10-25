@@ -5,7 +5,7 @@
         <!-- Inserir um modal para com o botao de ajustar parametros para que retorne os parametros dos params de maneira que possa 
          alterar caso a pesso queira um parametro diferente -->
         <div class="header mt-5">
-            
+
             <h1>Água</h1>
             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalParams">
                 Ajustar Parâmetros
@@ -80,6 +80,13 @@
                             [ngClass]="{'text-success': agua.ph >= params.phMin && agua.ph <= params.phMax, 'text-danger': !(agua.ph >= params.phMin && agua.ph <= params.phMax)}">
                             {{ agua.ph | number:'1.2-2' }}</td>
                     </tr>
+                    <tr *ngFor="let agua of listWater.waterList">
+                        <td colspan="5" class="align-middle">{{ agua.caracteristica }}</td>
+                    </tr>
+                    <tr *ngIf="listWater.waterList.length === 0">
+                        <td colspan="6">Nenhum registro encontrado</td>
+                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -106,11 +113,13 @@
                         </div>
                         <div class="form-group m-1 col-5">
                             <label for="alcalinityMin">Alcalinidade Mínima</label>
-                            <input type="number" formControlName="alcalinityMin" class="form-control" id="alcalinityMin">
+                            <input type="number" formControlName="alcalinityMin" class="form-control"
+                                id="alcalinityMin">
                         </div>
                         <div class="form-group m-1 col-5">
                             <label for="alcalinityMax">Alcalinidade Máxima</label>
-                            <input type="number" formControlName="alcalinityMax" class="form-control" id="alcalinityMax">
+                            <input type="number" formControlName="alcalinityMax" class="form-control"
+                                id="alcalinityMax">
                         </div>
                         <div class="form-group   m-1 col-5">
                             <label for="sodiuMin">Sódio Mínimo</label>

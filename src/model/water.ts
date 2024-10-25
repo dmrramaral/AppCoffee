@@ -1,4 +1,5 @@
 export interface Water {
+    caracteristica: string;
     nome: string;
     alcalinidade: number;
     dureza: number;
