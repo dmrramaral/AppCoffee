@@ -10,6 +10,14 @@ body {
     background-color: $background-color;
     color: $text-color;
 }
+.header{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+}
 
 h1 {
     color: $primary-color;

@@ -1,11 +1,21 @@
 <!-- Crie um ambiente para calcular a alcalinidade e a dureza e o sodium de um agua inserindo em uma lista abaixo -->
 
-
-<div class="container justify-content-evenly" >
+<div class="container justify-content-evenly">
     <div>
-        <h1>Água</h1>
+        <!-- Inserir um modal para com o botao de ajustar parametros para que retorne os parametros dos params de maneira que possa 
+         alterar caso a pesso queira um parametro diferente -->
+        <div class="header mt-5">
+            
+            <h1>Água</h1>
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalParams">
+                Ajustar Parâmetros
+            </button>
+        </div>
+        <p class="text-center mt-2">Insira os valores da água para calcular a alcalinidade e a dureza</p>
+
         <form [formGroup]="formWater">
-        <div class="d-flex flex-wrap justify-content-evenly">
+            <div class="d-flex flex-wrap justify-content-evenly">
+
                 <div class="form-group m-1 col-5">
                     <label for="nome">Nome</label>
                     <input type="text" formControlName="nome" class="form-control" id="nome">
@@ -24,7 +34,7 @@
                             <input type="number" formControlName="sulfato" class="form-control" id="sulfato">
                         </div> -->
                 <div class="form-group m-1  col-5">
-                    <label for="magnesio">Magnesio</label>
+                    <label for="magnesio">Magnésio</label>
                     <input type="number" formControlName="magnesio" class="form-control" id="magnesio">
                 </div>
                 <div class="form-group m-1  col-5">
@@ -49,7 +59,7 @@
                     <tr>
                         <th class="align-middle">Nome</th>
                         <th class="align-middle">Dureza<br><small>(Id: 68mg/l, Ac: 17-85mg/l)</small></th>
-                        <th class="align-middle">Alcalinidade<br><small>(Id: 40mg/l, Ac: 3-50mg/l)</small></th>
+                        <th class="align-middle">Alcalinidade<br><small>(Id: 40mg/l, Ac: 30-50mg/l)</small></th>
                         <th class="align-middle">Sódio<br><small>(Id: 10mg/l, Ac: 5-15mg/l)</small></th>
                         <th class="align-middle">PH<br><small>(Id: 7, Ac: 6.5-7.5)</small></th>
                     </tr>
@@ -58,20 +68,73 @@
                     <tr *ngFor="let agua of listWater.waterList">
                         <td class="align-middle">{{ agua.nome }}</td>
                         <td class="align-middle"
-                            [ngClass]="{'text-success': agua.dureza >= 17 && agua.dureza <= 85, 'text-danger': agua.dureza < 17 || agua.dureza > 85}">
+                            [ngClass]="{'text-success': agua.dureza >= params.durezaMin && agua.dureza <= params.durezaMax, 'text-danger': !(agua.dureza >= params.durezaMin && agua.dureza <= params.durezaMax)}">
                             {{ agua.dureza | number:'1.2-2' }}</td>
                         <td class="align-middle"
-                            [ngClass]="{'text-success': agua.alcalinidade >= 30 && agua.alcalinidade <= 50, 'text-danger': agua.alcalinidade < 30 || agua.alcalinidade > 50}">
+                            [ngClass]="{'text-success': agua.alcalinidade >= params.alcalinityMin && agua.alcalinidade <= params.alcalinityMax, 'text-danger': !(agua.alcalinidade >= params.alcalinityMin && agua.alcalinidade <= params.alcalinityMax)}">
                             {{ agua.alcalinidade | number:'1.2-2' }}</td>
                         <td class="align-middle"
-                            [ngClass]="{'text-success': agua.sodio >= 5 && agua.sodio <= 15, 'text-danger': agua.sodio > 15 || agua.sodio < 5}">{{
-                            agua.sodio | number:'1.2-2' }}</td>
+                            [ngClass]="{'text-success': agua.sodio >= params.sodiuMin && agua.sodio <= params.sodiuMax, 'text-danger': !(agua.sodio >= params.sodiuMin && agua.sodio <= params.sodiuMax)}">
+                            {{agua.sodio | number:'1.2-2' }}</td>
                         <td class="align-middle"
-                            [ngClass]="{'text-success': agua.ph >= 6.5 && agua.ph <= 7.5, 'text-danger': agua.ph < 6.5 || agua.ph > 7.5}">
+                            [ngClass]="{'text-success': agua.ph >= params.phMin && agua.ph <= params.phMax, 'text-danger': !(agua.ph >= params.phMin && agua.ph <= params.phMax)}">
                             {{ agua.ph | number:'1.2-2' }}</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalParams" tabindex="-1" aria-labelledby="modalParamsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalParamsLabel">Ajustar Parâmetros</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formParams">
+                    <div class="d-flex flex-wrap justify-content-evenly">
+                        <div class="form-group m-1 col-5">
+                            <label for="durezaMin">Dureza Mínima</label>
+                            <input type="number" formControlName="durezaMin" class="form-control" id="durezaMin">
+                        </div>
+                        <div class="form-group m-1 col-5">
+                            <label for="durezaMax">Dureza Máxima</label>
+                            <input type="number" formControlName="durezaMax" class="form-control" id="durezaMax">
+                        </div>
+                        <div class="form-group m-1 col-5">
+                            <label for="alcalinityMin">Alcalinidade Mínima</label>
+                            <input type="number" formControlName="alcalinityMin" class="form-control" id="alcalinityMin">
+                        </div>
+                        <div class="form-group m-1 col-5">
+                            <label for="alcalinityMax">Alcalinidade Máxima</label>
+                            <input type="number" formControlName="alcalinityMax" class="form-control" id="alcalinityMax">
+                        </div>
+                        <div class="form-group   m-1 col-5">
+                            <label for="sodiuMin">Sódio Mínimo</label>
+                            <input type="number" formControlName="sodiuMin" class="form-control" id="sodiuMin">
+                        </div>
+                        <div class="form-group m-1 col-5">
+                            <label for="sodiuMax">Sódio Máximo</label>
+                            <input type="number" formControlName="sodiuMax" class="form-control" id="sodiuMax">
+                        </div>
+                        <div class="form-group m-1 col-5">
+                            <label for="phMin">PH Mínimo</label>
+                            <input type="number" formControlName="phMin" class="form-control" id="phMin">
+                        </div>
+                        <div class="form-group   m-1 col-5">
+                            <label for="phMax">PH Máximo</label>
+                            <input type="number" formControlName="phMax" class="form-control" id="phMax">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" (click)="saveParams()">Salvar</button>
+            </div>
         </div>
     </div>
 </div>

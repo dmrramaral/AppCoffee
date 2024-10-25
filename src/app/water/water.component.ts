@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Water } from '../../model/water';
 import { ListWater } from '../../model/listWater';
+import { Params } from '../../model/params';
 
 @Component({
   selector: 'app-water',
@@ -17,9 +18,22 @@ import { ListWater } from '../../model/listWater';
 })
 export class WaterComponent implements OnInit {
 
+
   water!: Water;
+  params: Params = { 
+    alcalinityMin: 30,
+    alcalinityMax: 50,
+    durezaMin: 17,
+    durezaMax: 85,
+    phMin: 6.5,
+    phMax: 7.5,
+    sodiuMin: 5,
+    sodiuMax: 15,
+   };
   listWater: ListWater = { waterList: [] };
   formWater!: FormGroup;  
+  formParams!: FormGroup;
+
 
   constructor(
     private formBuilder: FormBuilder
@@ -27,7 +41,22 @@ export class WaterComponent implements OnInit {
 
   ngOnInit() {
     this.initializeForm();
+    this.inicializeParams();
   }
+
+  inicializeParams() {
+    this.formParams = this.formBuilder.group({
+      alcalinityMin: [this.params.alcalinityMin],
+      alcalinityMax: [this.params.alcalinityMax],
+      durezaMin: [this.params.durezaMin],
+      durezaMax: [this.params.durezaMax],
+      phMin: [this.params.phMin],
+      phMax: [this.params.phMax],
+      sodiuMin: [this.params.sodiuMin], 
+      sodiuMax: [this.params.sodiuMax]
+    });
+  }
+
 
   initializeForm() {
     this.formWater = this.formBuilder.group({
@@ -71,5 +100,12 @@ export class WaterComponent implements OnInit {
   save() {
     this.listWater.waterList.push(this.formWater.value);
     this.formWater.reset();
+  }
+
+  saveParams() {
+    console.log(this.params);
+    this.params = this.formParams.value;
+
+
   }
 }
