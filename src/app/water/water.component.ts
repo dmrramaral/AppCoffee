@@ -23,12 +23,12 @@ export class WaterComponent implements OnInit {
   water!: Water;
   params: Params = { 
     alcalinityMin: 30,
-    alcalinityMax: 50,
-    durezaMin: 17,
+    alcalinityMax: 60,
+    durezaMin: 10,
     durezaMax: 85,
     phMin: 6.5,
     phMax: 7.5,
-    sodiuMin: 5,
+    sodiuMin: 7,
     sodiuMax: 15,
    };
   listWater: ListWater = { waterList: [] };
@@ -101,34 +101,33 @@ export class WaterComponent implements OnInit {
   }
 
   gerarCaracteristicas(values: any) {
-    let caracteristicas = [];
+  let caracteristicas = [];
 
-    if (values.bicarbonato >= 50) {
-      caracteristicas.push("Água mais ácida");
-    }
-    if (values.bicarbonato < 50) {
-      caracteristicas.push("Água menos ácida");
-    }
-
-    if (values.magnesio <= 3) {
-      caracteristicas.push("menos frutado");
-    }
-    if (values.magnesio > 3) {
-      caracteristicas.push("mais frutado");
-    }
-
-    if (values.calcio >= 16) {
-      caracteristicas.push("mais doce.");
-    }
-    if (values.calcio < 16) {
-      caracteristicas.push("menos doce.");
-    }
-
-   
-
-    return caracteristicas.join(", ");
+  // Ajuste para alcalinidade (baseado no parâmetro de alcalinidade)
+  if (values.bicarbonato >= this.params.alcalinityMin && values.bicarbonato <= this.params.alcalinityMax) {
+    caracteristicas.push("Água equilibrada em acidez");
+  } else if (values.bicarbonato > this.params.alcalinityMax) {
+    caracteristicas.push("Água menos ácida");
+  } else {
+    caracteristicas.push("Água mais ácida");
   }
 
+  // Ajuste para magnésio (baseado nos parâmetros de frutado)
+  if (values.magnesio <= this.params.durezaMin) {
+    caracteristicas.push("menos frutado");
+  } else {
+    caracteristicas.push("mais frutado");
+  }
+
+  // Ajuste para cálcio (baseado nos parâmetros de doçura)
+  if (values.calcio >= this.params.durezaMin && values.calcio <= this.params.durezaMax) {
+    caracteristicas.push("mais doce");
+  } else {
+    caracteristicas.push("menos doce");
+  }
+
+  return caracteristicas.join(", ");
+}
   save() {
     console.log(this.formWater.value);
     this.listWater.waterList.push(this.formWater.value);
