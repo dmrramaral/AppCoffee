@@ -11,7 +11,7 @@
                 Ajustar Parâmetros
             </button>
             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalSobre">
-                Saiba sobre os parâmetros
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="brown" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
             </button>
         </div>
         <p class="text-center mt-2">Insira os valores da água para calcular a alcalinidade e a dureza</p>
@@ -51,33 +51,39 @@
 
             </div>
             <div class="form-group m-1 col-sm-8">
-                <button type="button" class="btn btn-primary btn-m" (click)="calcular()">Calcular</button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="calcular()">Calcular</button>
             </div>
         </form>
 
-        <div class="col-md-6 col-sm-12">
-            <small>Dados de referência da tabela SCA</small>
-            <table class="table text-center " style="">
-                <thead>
-                    <tr>
-                        <th class="align-middle">Alcalinidade</th>
-                        <th class="align-middle">Dureza</th>
-                        <th class="align-middle">PH</th>
+        <div class="col-md-6 col-sm-12 mt-5">
+            <a class="btn btn-primary btn-sm mb-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                SCA
+              </a>
+            <div class="collapse" id="collapseExample">
+                <table class="table text-center " style="">
+                    <thead>
+                        <tr>
+                            <th class="align-middle">Alcalinidade</th>
+                            <th class="align-middle">Dureza</th>
+                            <th class="align-middle">PH</th>
                         </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="align-middle">40-75 mg/l
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="align-middle">40-75 mg/l
 
-                            <p style="font-size: xx-small;">Caracteristica: <br> + alcalino - acidez</p>
-                        </td>
+                                <p style="font-size: xx-small;">Caracteristica: <br> + alcalino - acidez</p>
+                            </td>
 
-                        <td class="align-middle">50-175 mg/l
-                            <p style="font-size: xx-small;">Caracteristica:<br>+ dureza maior eficiencia na extração</p>
-                        </td>
-                        <td class="align-middle">6.5-7.5</td>
-                    </tr>
-            </table>
+                            <td class="align-middle">50-175 mg/l
+                                <p style="font-size: xx-small;">Caracteristica:<br>+ dureza maior eficiencia na extração
+                                </p>
+                            </td>
+                            <td class="align-middle">6.5-7.5</td>
+                        </tr>
+                </table>
+            </div>
+
             <table class="table text-center">
                 <thead>
                     <tr>
@@ -197,57 +203,32 @@
                 <div class="container">
                     <h2>Impacto dos Nutrientes no Sensorial do Café</h2>
 
-                    <div class="nutrient">
-                        <h3>1. Alcalinidade</h3>
-                        <p>A alcalinidade ajuda a equilibrar a acidez do café, influenciando seu perfil geral de sabor.
-                        </p>
-                        <div class="levels">
-                            <p><span class="level">Equilibrado (30-50 mg/L):</span> Mantém a acidez controlada,
-                                resultando em um café harmonioso e suave.</p>
-                            <p><span class="level">Aumentado (>50 mg/L):</span> Reduz a acidez, tornando o café mais
-                                alcalino e menos vibrante.</p>
-                            <p><span class="level">Reduzido (<30 mg/L):</span> Aumenta a acidez, resultando em um café
-                                        mais brilhante e frutado.</p>
-                        </div>
+                    <div class="nutriente">
+                        <h3>Alcalinidade (40 a 75 mg/L)</h3>
+                        <p><span class="nivel">Nível Equilibrado:</span> Entre 40 e 75 mg/L. A alcalinidade equilibrada contribui para uma acidez agradável, que realça os sabores frutados e a doçura natural do café.</p>
+                        <p><span class="nivel">Nível Elevado:</span> Acima de 75 mg/L. Aumenta o efeito tampão, reduzindo a acidez perceptível do café, tornando-o "apagado" e com menos vivacidade.</p>
+                        <p><span class="nivel">Nível Baixo:</span> Abaixo de 40 mg/L. Pode resultar em um café excessivamente ácido, intensificando sabores ácidos e amargos, o que pode desequilibrar o perfil sensorial.</p>
                     </div>
-
-                    <div class="nutrient">
-                        <h3>2. Dureza (Cálcio e Magnésio)</h3>
-                        <p>Minerais como cálcio e magnésio afetam a doçura e o corpo do café.</p>
-                        <div class="levels">
-                            <p><span class="level">Equilibrado (17-85 mg/L):</span> Proporciona corpo médio e acentua
-                                doçura suave.</p>
-                            <p><span class="level">Aumentado (>85 mg/L):</span> Acentua o corpo, mas pode deixar o sabor
-                                "calcário" ou metálico.</p>
-                            <p><span class="level">Reduzido (<17 mg/L):</span> Café leve, mas com menor complexidade e
-                                        corpo.</p>
-                        </div>
+                
+                    <div class="nutriente">
+                        <h3>Dureza Total (50 a 175 mg/L)</h3>
+                        <p><span class="nivel">Nível Equilibrado:</span> Entre 50 e 175 mg/L. A dureza total nesse intervalo melhora a extração dos compostos desejáveis, resultando em um corpo balanceado e doçura perceptível no café.</p>
+                        <p><span class="nivel">Nível Elevado:</span> Acima de 175 mg/L. Pode causar sobre-extração, criando um sabor metálico ou amargo e reduzindo a clareza dos sabores.</p>
+                        <p><span class="nivel">Nível Baixo:</span> Abaixo de 50 mg/L. Reduz a eficiência de extração, resultando em um café ralo e "aguado", com menos corpo e intensidade de sabor.</p>
                     </div>
-
-                    <div class="nutrient">
-                        <h3>3. pH</h3>
-                        <p>O pH da água usada no preparo afeta diretamente a acidez e o equilíbrio do sabor do café.</p>
-                        <div class="levels">
-                            <p><span class="level">Equilibrado (6.5-7.5):</span> Proporciona um café com acidez moderada
-                                e sabor balanceado.</p>
-                            <p><span class="level">Aumentado (>7.5):</span> Reduz a acidez, tornando o café mais suave,
-                                mas pode parecer sem brilho.</p>
-                            <p><span class="level">Reduzido (<6.5):</span> Aumenta a acidez, realçando notas frutadas,
-                                                                    mas pode tornar o sabor excessivamente ácido.</p>
-                        </div>
+                
+                    <div class="nutriente">
+                        <h3>pH (6.5 a 7.5)</h3>
+                        <p><span class="nivel">Nível Equilibrado:</span> Entre 6.5 e 7.5. Um pH balanceado promove uma extração neutra, realçando as características naturais do café sem interferir no sabor.</p>
+                        <p><span class="nivel">Nível Elevado:</span> Acima de 7.5. Pode fazer com que o café pareça mais alcalino, suavizando a acidez, mas perdendo frescor e complexidade no sabor.</p>
+                        <p><span class="nivel">Nível Baixo:</span> Abaixo de 6.5. Pode acentuar a acidez de maneira agressiva, tornando o café excessivamente ácido e potencialmente desconfortável ao paladar.</p>
                     </div>
-
-                    <div class="nutrient">
-                        <h3>4. Sódio</h3>
-                        <p>O sódio pode influenciar a percepção de doçura e acentuar sabores.</p>
-                        <div class="levels">
-                            <p><span class="level">Equilibrado (5-15 mg/L):</span> Realça a doçura natural e acentua o
-                                sabor do café.</p>
-                            <p><span class="level">Aumentado (>15 mg/L):</span> Pode adicionar um sabor salgado
-                                indesejado.</p>
-                            <p><span class="level"> Reduzido (<5 mg/L): </span> A doçura é menos pronunciada, resultando
-                                        em um café mais neutro.</p>
-                        </div>
+                
+                    <div class="nutriente">
+                        <h3>Sódio (5 a 15 mg/L)</h3>
+                        <p><span class="nivel">Nível Equilibrado:</span> Entre 5 e 15 mg/L. O sódio balanceado contribui para a percepção de suavidade e doçura, melhorando a textura do café sem interferir no sabor.</p>
+                        <p><span class="nivel">Nível Elevado:</span> Acima de 15 mg/L. Pode adicionar um gosto salgado ao café, mascarando notas delicadas e prejudicando a clareza do sabor.</p>
+                        <p><span class="nivel">Nível Baixo:</span> Abaixo de 5 mg/L. Pode resultar em uma sensação de secura, deixando o café com menos suavidade e corpo.</p>
                     </div>
                 </div>
 

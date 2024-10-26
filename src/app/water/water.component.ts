@@ -101,33 +101,32 @@ export class WaterComponent implements OnInit {
   }
 
   gerarCaracteristicas(values: any) {
-  let caracteristicas = [];
-
-  // Ajuste para alcalinidade (baseado no parâmetro de alcalinidade)
-  if (values.bicarbonato >= this.params.alcalinityMin && values.bicarbonato <= this.params.alcalinityMax) {
-    caracteristicas.push("Água equilibrada em acidez");
-  } /* else if (values.bicarbonato > this.params.alcalinityMax) {
-    caracteristicas.push("Água menos ácida");
-  } else {
-    caracteristicas.push("Água mais ácida");
-  } */
-
-  /* // Ajuste para magnésio (baseado nos parâmetros de frutado)
-  if ((values.calcio * 2.497 + values.magnesio * 4.118) <= this.params.durezaMin) {
-    caracteristicas.push("menos frutado");
-  } else {
-    caracteristicas.push("mais frutado");
-  } */
-
-  // Ajuste para cálcio (baseado nos parâmetros de doçura)
-  if ((values.calcio * 2.497 + values.magnesio * 4.118) >= this.params.durezaMin && (values.calcio * 2.497 + values.magnesio * 4.118) <= this.params.durezaMax) {
-    caracteristicas.push("indicado pela SCA");
-  } /* else {
-    caracteristicas.push("menos doce");
-  } */
-
-  return caracteristicas.join(", ");
-}
+    let caracteristicas = [];
+  
+    // Cálculo da alcalinidade (baseado no parâmetro de alcalinidade da SCA)
+    const alcalinidade = values.bicarbonato;
+    if (alcalinidade >= this.params.alcalinityMin && alcalinidade <= this.params.alcalinityMax) {
+      caracteristicas.push("Água equilibrada em acidez");
+    } else if (alcalinidade > this.params.alcalinityMax) {
+      caracteristicas.push("Água menos ácida, impacto reduzido na acidez");
+    } else {
+      caracteristicas.push("Água mais ácida, acidez acentuada");
+    }
+  
+    // Cálculo da dureza total (com base em cálcio e magnésio)
+    const durezaTotal = (values.calcio * 2.497) + (values.magnesio * 4.118);
+  
+    // Verificação da dureza para o perfil frutado/doce de acordo com a SCA
+    if (durezaTotal >= this.params.durezaMin && durezaTotal <= this.params.durezaMax) {
+      caracteristicas.push("Equilíbrio de corpo e doçura");
+    } else if (durezaTotal > this.params.durezaMax) {
+      caracteristicas.push("Possível sobre-extração, sabores amargos e metálicos");
+    } else {
+      caracteristicas.push("Sub-extração, sabor ralo e menos doce");
+    }
+  
+    return caracteristicas.join(", ");
+  }
   save() {
     console.log(this.formWater.value);
     this.listWater.waterList.push(this.formWater.value);
