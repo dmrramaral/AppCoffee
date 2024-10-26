@@ -22,10 +22,10 @@ export class WaterComponent implements OnInit {
 
   water!: Water;
   params: Params = { 
-    alcalinityMin: 30,
-    alcalinityMax: 60,
-    durezaMin: 10,
-    durezaMax: 85,
+    alcalinityMin: 40,
+    alcalinityMax: 75,
+    durezaMin: 50,
+    durezaMax: 175,
     phMin: 6.5,
     phMax: 7.5,
     sodiuMin: 7,
@@ -89,8 +89,8 @@ export class WaterComponent implements OnInit {
       sodio: values.sodio,
       sulfato: values.sulfato,
       cloreto: values.cloreto,
-      alcalinidade: values.bicarbonato * 0.8,
-      dureza: values.calcio * 2.5 + values.magnesio * 4.2,
+      alcalinidade: values.bicarbonato * 0.8202,
+      dureza: values.calcio * 2.497 + values.magnesio * 4.118,
       ph: values.ph,
       caracteristica: this.gerarCaracteristicas(values)
     };
