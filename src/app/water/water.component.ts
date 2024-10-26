@@ -106,25 +106,25 @@ export class WaterComponent implements OnInit {
   // Ajuste para alcalinidade (baseado no parâmetro de alcalinidade)
   if (values.bicarbonato >= this.params.alcalinityMin && values.bicarbonato <= this.params.alcalinityMax) {
     caracteristicas.push("Água equilibrada em acidez");
-  } else if (values.bicarbonato > this.params.alcalinityMax) {
+  } /* else if (values.bicarbonato > this.params.alcalinityMax) {
     caracteristicas.push("Água menos ácida");
   } else {
     caracteristicas.push("Água mais ácida");
-  }
+  } */
 
-  // Ajuste para magnésio (baseado nos parâmetros de frutado)
-  if (values.magnesio <= this.params.durezaMin) {
+  /* // Ajuste para magnésio (baseado nos parâmetros de frutado)
+  if ((values.calcio * 2.497 + values.magnesio * 4.118) <= this.params.durezaMin) {
     caracteristicas.push("menos frutado");
   } else {
     caracteristicas.push("mais frutado");
-  }
+  } */
 
   // Ajuste para cálcio (baseado nos parâmetros de doçura)
-  if (values.calcio >= this.params.durezaMin && values.calcio <= this.params.durezaMax) {
-    caracteristicas.push("mais doce");
-  } else {
+  if ((values.calcio * 2.497 + values.magnesio * 4.118) >= this.params.durezaMin && (values.calcio * 2.497 + values.magnesio * 4.118) <= this.params.durezaMax) {
+    caracteristicas.push("indicado pela SCA");
+  } /* else {
     caracteristicas.push("menos doce");
-  }
+  } */
 
   return caracteristicas.join(", ");
 }
